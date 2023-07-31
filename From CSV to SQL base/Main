@@ -1,0 +1,45 @@
+import pandas as pd
+import scipy as sp
+import numpy as np
+import mysql.connector
+
+def create_mysql_table(column_name, column_data, cursor):
+    # Create a table with the column name
+    query = f"CREATE TABLE IF NOT EXISTS {column_name} (data TEXT);"
+    cursor.execute(query)
+
+    # Insert data into the table
+    for data in column_data:
+        query = f"INSERT INTO {column_name} (data) VALUES (%s);"
+        cursor.execute(query, (data,))
+
+def csv_to_mysql(csv_file, host, username, password, database):
+    # Read the CSV file
+    df = pd.read_csv(csv_file)
+
+    # Establish a connection to the MySQL database
+    conn = mysql.connector.connect(
+        host=host,
+        user=username,
+        password=password,
+        database=database
+    )
+    cursor = conn.cursor()
+
+    # Loop through each column in the CSV file and create a table for it
+    for column_name in df.columns:
+        column_data = df[column_name].tolist()
+        create_mysql_table(column_name, column_data, cursor)
+
+    # Commit changes and close the connection
+    conn.commit()
+    conn.close()
+
+if __name__ == "__main__":
+    csv_file_path = "path/to/your/csv_file.csv"
+    host = "your_mysql_host"  # Example: "localhost"
+    username = "your_mysql_username"
+    password = "your_mysql_password"
+    database = "your_mysql_database"
+    
+    csv_to_mysql(csv_file_path, host, username, password, database)
