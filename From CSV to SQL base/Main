@@ -1,7 +1,5 @@
 import pandas as pd
-import scipy as sp
 import numpy as np
-import mysql.connector
 
 def create_mysql_table(column_name, column_data, cursor):
     # Create a table with the column name

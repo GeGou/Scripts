@@ -1,0 +1,23 @@
+import csv
+
+input_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTestV3.txt'
+output_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTestV4.txt'
+
+input_filename = input_txt_path
+output_filename = output_txt_path
+
+# input_filename = 'input.csv'
+# output_filename = 'output.csv'
+
+with open(input_filename, 'r', encoding="utf8") as input_file, open(output_filename, 'w', newline='', encoding="utf8") as output_file:
+    csv_reader = csv.reader(input_file)
+    csv_writer = csv.writer(output_file)
+
+    for row in csv_reader:
+        # Swap the values of the first and second fields
+        row[0], row[1] = row[1], row[0]
+        
+        # Write the modified row to the output file
+        csv_writer.writerow(row)
+
+print("CSV fields swapped and saved to", output_filename)
