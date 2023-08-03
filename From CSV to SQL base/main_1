@@ -4,32 +4,38 @@ def remove_empty_and_combine_lines(input_file, output_file):
     # Read the CSV file into a DataFrame
     df = pd.read_csv(input_file)
 
+    #checking the number of empty rows in th csv file
+    # print (df.isnull().sum())
+
+    #Droping the empty rows
     # Remove rows with any empty values
-    df.dropna(axis=0, how='any', inplace=True)
+    processed_df = df.dropna()
+    # df.dropna(axis=0, how='any', inplace=True)
 
-    # # Combine lines that don't start with an integer of 4 or more digits
-    combined_lines = []
-    prev_line = None
-    for line in df.iloc[:, 0]:  # Assuming the first column is the one to process
-        if prev_line is not None and not line.isdigit() or len(line) < 4:
-            prev_line += " " + line
-        else:
-            if prev_line is not None:
-                combined_lines.append(prev_line)
-            prev_line = line
+    # # # Combine lines that don't start with an integer of 4 or more digits
+    # combined_lines = []
+    # prev_line = None
+    # for line in df.iloc[:, 0]:  # Assuming the first column is the one to process
+    #     if prev_line is not None and (not line.isdigit() or len(line) < 4):
+    #         prev_line += " " + line
+    #     else:
+    #         if prev_line is not None:
+    #             combined_lines.append(prev_line)
+    #         prev_line = line
 
-    if prev_line is not None:
-        combined_lines.append(prev_line)
+    # if prev_line is not None:
+    #     combined_lines.append(prev_line)
 
     # Create a new DataFrame with the combined lines
-    processed_df = pd.DataFrame({df.columns[0]: combined_lines})
+    # processed_df = pd.DataFrame({df.columns[0]: combined_lines})
 
     # Save the new DataFrame to a new CSV file
+    # df.to_csv(output_file, index=False)
     processed_df.to_csv(output_file, index=False)
 
 if __name__ == "__main__":
-    input_csv_file = r"C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\listings.csv"
-    output_csv_file = r"C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\listingsTest.csv"
+    input_csv_file = r"C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsCopy.csv"
+    output_csv_file = r"C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTest.csv"
     remove_empty_and_combine_lines(input_csv_file, output_csv_file)
 
 

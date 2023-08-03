@@ -1,0 +1,40 @@
+import csv
+
+
+# input_csv_file = r"C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsCopy.csv"
+# output_csv_file = r"C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTest.csv"
+
+# open input csv for reading
+inputCSV = open(r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsCopy.csv', 'r', encoding="utf8")
+
+# create output csv for writing
+outputCSV = open(r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTest.csv', 'w', encoding="utf8")
+
+# prepare output csv for appending
+appendCSV = open(r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTest.csv', 'a', encoding="utf8")
+
+# create reader object
+cr = csv.reader(inputCSV, dialect = 'excel')
+
+# create writer object
+cw = csv.writer(outputCSV, dialect = 'excel', lineterminator='\r')
+
+# create writer object for append
+ca = csv.writer(appendCSV, dialect = 'excel', lineterminator='\r')
+
+# add pre-defined fields
+cw.writerow(['listing_id','id','date','reviewer_id','reviewer_name','comments'])
+
+
+# delete existing field names in input CSV
+# ???????????????????????????
+
+# loop through input csv, check for blanks, and write all changes to append csv
+for row in cr:
+    if row or any(row) or any(field.strip() for field in row):
+        ca.writerow(row)
+
+# close files
+inputCSV.close()
+outputCSV.close()
+appendCSV.close()

@@ -1,0 +1,21 @@
+import csv
+
+input_csv_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsCopy.csv'
+output_csv_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTest.csv'
+
+# Read input CSV, filter non-empty rows, and write to output CSV
+with open(input_csv_path, 'r', newline='', encoding='utf8') as inputCSV, \
+     open(output_csv_path, 'w', newline='', encoding='utf8') as outputCSV:
+    
+    cr = csv.reader(inputCSV, dialect='excel')
+    cw = csv.writer(outputCSV, dialect='excel')
+
+    header_written = False
+    for row in cr:
+        if not header_written:
+            cw.writerow(row)  # Write header row to output CSV
+            header_written = True
+        elif any(field.strip() for field in row):
+            cw.writerow(row)
+
+print("Processing complete.")
