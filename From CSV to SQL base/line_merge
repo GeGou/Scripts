@@ -1,5 +1,10 @@
-input_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTestV2.txt'
-output_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTestV3.txt'
+# input_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTestV2.txt'
+# output_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTestV3.txt'
+
+
+input_txt_path = r'C:\Users\giorg\Desktop\ΤΕΔΙ\Εργασία\listingsV2.txt'
+output_txt_path = r'C:\Users\giorg\Desktop\ΤΕΔΙ\Εργασία\listingsV3.txt'
+
 
 # Read input TXT, modify lines, and write to output TXT
 with open(input_txt_path, 'r', encoding='utf8') as inputFile, \

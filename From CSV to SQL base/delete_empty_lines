@@ -1,5 +1,10 @@
-input_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsCopyV2.txt'
-output_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\reviewsTestV2.txt'
+
+# input_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\listingsV1.txt'
+# output_txt_path = r'C:\Users\GIORGOS G\Downloads\AirBnbDataset\AirBnbDataset\listingsV2.txt'
+
+input_txt_path = r'C:\Users\giorg\Desktop\ΤΕΔΙ\Εργασία\listingsV1.txt'
+output_txt_path = r'C:\Users\giorg\Desktop\ΤΕΔΙ\Εργασία\listingsV2.txt'
+
 
 # Read input TXT, filter non-empty lines, and write to output TXT
 with open(input_txt_path, 'r', encoding='utf8') as inputFile, \
